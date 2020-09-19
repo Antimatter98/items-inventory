@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 
+import Inventory from "../inventory/Inventory";
+
 import { firebaseContext } from "../main/MainHandler";
 
 const HomePage = () => {
@@ -8,7 +10,7 @@ const HomePage = () => {
   return (
     <div className="page-container">
       <h1>Home, Logged in!</h1>
-      <p>{JSON.stringify(user)}</p>
+      <Inventory />
       <button onClick={signOut}>Signout</button>
     </div>
   );

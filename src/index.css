@@ -59,3 +59,37 @@ body {
 .google-button:active {
   background: var(--google-button-bg-clicked);
 }
+
+.item-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-card {
+  background: var(--primary-bg-color);
+  color: var(--primary-text-color);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5em;
+  margin: 2em 0;
+  width: min(750px, 75%);
+}
+
+.item-card__text {
+  white-space: nowrap;
+  width: max(200px, 40%);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  padding: 0.5em;
+}
+
+@media only scren and (min-width: 768px) {
+  .item-card {
+    margin: 1em 0;
+  }
+}
