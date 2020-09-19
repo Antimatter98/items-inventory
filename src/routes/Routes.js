@@ -2,30 +2,23 @@ import React, { useContext } from "react";
 import { HashRouter, Redirect, Route, Switch } from "react-router-dom";
 
 import { firebaseContext } from "../components/main/MainHandler";
+import HomePage from "../components/pages/HomePage";
+import LandingPage from "../components/pages/LandingPage";
 
 const Routes = () => {
-  const user = useContext(firebaseContext);
+  const { user } = useContext(firebaseContext);
   console.log(user);
 
-  const conditionalRender = () =>
-    user.user ? (
-      <div>
-        <h1>Home, Logged in!</h1>
-        <p>{JSON.stringify(user.user)}</p>
-        <button onClick={user.signOut}>Signout</button>
-      </div>
-    ) : (
-      <div>
-        <h1>Landing</h1>
-        <button onClick={user.signInWithGoogle}>Signin with Google</button>
-      </div>
-    );
+  const conditionalLandingPageRender = () =>
+    user ? <Redirect to="/home" /> : <LandingPage />;
+  const conditionalHomePageRender = () =>
+    user ? <HomePage /> : <Redirect to="/" />;
 
   return (
     <HashRouter basename="/">
       <Switch>
-        <Route path="/" exact render={() => conditionalRender()} />
-        {/* <Route path="/home" exact render={() => <div>home Page</div>} /> */}
+        <Route path="/" exact render={() => conditionalLandingPageRender()} />
+        <Route path="/home" exact render={() => conditionalHomePageRender()} />
         <Redirect to="/" />
       </Switch>
     </HashRouter>
