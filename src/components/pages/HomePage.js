@@ -6,7 +6,7 @@ const HomePage = () => {
   const { user, signOut } = useContext(firebaseContext);
 
   return (
-    <div>
+    <div className="page-container">
       <h1>Home, Logged in!</h1>
       <p>{JSON.stringify(user)}</p>
       <button onClick={signOut}>Signout</button>

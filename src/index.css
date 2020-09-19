@@ -1,13 +1,61 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --primary-bg-color: #ffffff;
+  --primary-text-color: black;
+  --secondary-bg-color: #77a6f7;
+  --secondary-text-color: white;
+  --google-button-bg: white;
+  --google-button-bg-clicked: #e5e5e5;
+  --google-button-text: #737373;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+html {
+  background: var(--secondary-bg-color);
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.page-container {
+  color: var(--secondary-text-color);
+  text-align: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.landing-title {
+  padding-top: 8em;
+  padding-bottom: 1em;
+}
+
+.google-button {
+  padding: 1em;
+  background: var(--google-button-bg);
+  color: var(--google-button-text);
+  border-radius: 5px;
+  box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.1s ease-in-out;
+  border: none;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+.google-button__icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1em;
+  height: 1em;
+  padding-right: 0.5em;
+}
+
+.google-button:hover,
+.google-button:focus {
+  box-shadow: 1px 3px 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+.google-button:active {
+  background: var(--google-button-bg-clicked);
 }
