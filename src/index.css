@@ -20,11 +20,15 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-.page-container {
+.home-page,
+.landing-page {
   color: var(--secondary-text-color);
   text-align: center;
   min-height: 100vh;
   margin: 0;
+}
+
+.home-page {
   padding-top: 5em;
 }
 
@@ -106,7 +110,8 @@ body {
   border-color: var(--secondary-bg-color);
 }
 
-.inventoryModal {
+.inventoryModal,
+.inventoryAddModal {
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
@@ -154,7 +159,8 @@ body {
   padding-top: 1em;
 }
 
-.modal input {
+.modal input,
+.modal select {
   border-radius: 2px;
   height: 2em;
   border-width: thin;
@@ -172,6 +178,19 @@ body {
   border: none;
   cursor: pointer;
   align-self: center;
+}
+
+.add-button {
+  background: var(--primary-bg-color);
+  color: var(--navbar-color);
+  padding: 1em;
+  border: none;
+  border-radius: 4px;
+}
+
+.add-button > span {
+  padding-left: 1em;
+  font-weight: bold;
 }
 
 .navbar {

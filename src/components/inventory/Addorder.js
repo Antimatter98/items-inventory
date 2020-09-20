@@ -1,14 +1,17 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
-export const modalDisplay = () => {
-  document.getElementsByClassName("inventoryModal")[0].style.display = "flex";
+export const addModalDisplay = () => {
+  document.getElementsByClassName("inventoryAddModal")[0].style.display =
+    "flex";
 };
 
 const closeModal = () => {
-  document.getElementsByClassName("inventoryModal")[0].style.display = "none";
+  document.getElementsByClassName("inventoryAddModal")[0].style.display =
+    "none";
 };
 
-const InventoryEditModal = ({ selectedData, editItemFromInventory }) => {
+const Addorder = ({ addItemToInventory }) => {
   const initialState = {
     id: "",
     product: "",
@@ -19,39 +22,41 @@ const InventoryEditModal = ({ selectedData, editItemFromInventory }) => {
 
   const [formState, setFormState] = useState(initialState);
 
-  //only change the state when new item is passed.
-  //to avoid re-renders
-  if (selectedData.id !== formState.id) {
-    setFormState((prevState) => selectedData);
-  }
-
   const handleChange = ({ target }) => {
-    setFormState((prevState) => ({
-      ...prevState,
-      [target.name]: target.value,
-    }));
+    if (formState.id !== "") {
+      setFormState((prevState) => ({
+        ...prevState,
+        [target.name]: target.value,
+      }));
+    } else {
+      setFormState((prevState) => ({
+        ...prevState,
+        id: uuidv4(),
+        [target.name]: target.value,
+      }));
+    }
   };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    editItemFromInventory(formState);
+    addItemToInventory(formState);
     closeModal();
   };
 
   return (
-    <div className="inventoryModal">
+    <div className="inventoryAddModal">
       <div className="modal">
         <button className="modal__close-button" onClick={closeModal}>
           &#10006;
         </button>
-        <h3>Edit item:</h3>
+        <h3>Add item:</h3>
         <form>
           <div className="modal__form-item">
             <label htmlFor="customer_name">Name:</label>
             <input
               type="text"
               value={formState.customer_name}
-              placeholder={selectedData.customer_name}
+              placeholder="Name"
               onChange={handleChange}
               name="customer_name"
             />
@@ -61,7 +66,7 @@ const InventoryEditModal = ({ selectedData, editItemFromInventory }) => {
             <input
               type="email"
               value={formState.customer_email}
-              placeholder={selectedData.customer_email}
+              placeholder="email"
               onChange={handleChange}
               name="customer_email"
             />
@@ -84,7 +89,7 @@ const InventoryEditModal = ({ selectedData, editItemFromInventory }) => {
             <input
               type="number"
               value={formState.quantity}
-              placeholder={selectedData.quantity}
+              placeholder="quantity"
               onChange={handleChange}
               name="quantity"
             />
@@ -100,4 +105,4 @@ const InventoryEditModal = ({ selectedData, editItemFromInventory }) => {
   );
 };
 
-export default InventoryEditModal;
+export default Addorder;

@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrash,
+  faPencilAlt,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import InventoryEditModal, { modalDisplay } from "./InventoryEditModal";
+import Addorder, { addModalDisplay } from "./Addorder";
 
 const data = require("../data/DummyData.json");
 
 const Inventory = () => {
-  const initialEditSelectedItem = {
+  const initialState = {
     id: "",
     product: "",
     quantity: "",
@@ -14,7 +19,7 @@ const Inventory = () => {
     customer_name: "",
   };
   const [inventory, setInventory] = useState(data);
-  const [selectedData, setSelectedData] = useState(initialEditSelectedItem);
+  const [selectedData, setSelectedData] = useState(initialState);
 
   const deleteItemFromInventory = (id) => {
     setInventory((prevState) => prevState.filter((item) => item.id !== id));
@@ -29,6 +34,10 @@ const Inventory = () => {
         return prevItem;
       })
     );
+  };
+
+  const addItemToInventory = (item) => {
+    setInventory((prevState) => [item, ...prevState]);
   };
 
   const loadAllInventoryItems = () =>
@@ -69,9 +78,13 @@ const Inventory = () => {
         selectedData={selectedData}
         editItemFromInventory={editItemFromInventory}
       />
+      <Addorder addItemToInventory={addItemToInventory} />
       <p>Total orders: {inventory.length}</p>
+      <button onClick={addModalDisplay} className="add-button">
+        <FontAwesomeIcon icon={faPlus} color="blue" />
+        <span>Add an Order</span>
+      </button>
       {loadAllInventoryItems()}
-      {console.log(inventory.length)}
     </div>
   );
 };
