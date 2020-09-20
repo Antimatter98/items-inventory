@@ -8,7 +8,7 @@ const closeModal = () => {
   document.getElementsByClassName("inventoryModal")[0].style.display = "none";
 };
 
-const InventoryEditModal = ({ selectedData }) => {
+const InventoryEditModal = ({ selectedData, editItemFromInventory }) => {
   const initialState = {
     id: "",
     product: "",
@@ -19,7 +19,11 @@ const InventoryEditModal = ({ selectedData }) => {
 
   const [formState, setFormState] = useState(initialState);
 
-  console.log(formState);
+  //only change the state when new item is passed.
+  //to avoid re-renders
+  if (selectedData.id !== formState.id) {
+    setFormState((prevState) => selectedData);
+  }
 
   const handleChange = ({ target }) => {
     setFormState((prevState) => ({
@@ -28,17 +32,16 @@ const InventoryEditModal = ({ selectedData }) => {
     }));
   };
 
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    editItemFromInventory(formState);
+    closeModal();
+  };
+
   return (
     <div className="inventoryModal">
       <div className="modal">
-        <button
-          className="modal__close-button"
-          onClick={() => {
-            setFormState(initialState);
-            console.log(formState);
-            closeModal();
-          }}
-        >
+        <button className="modal__close-button" onClick={closeModal}>
           &#10006;
         </button>
         <h3>Edit item:</h3>
@@ -84,7 +87,7 @@ const InventoryEditModal = ({ selectedData }) => {
             />
           </div>
           <div align="center" className="modal__form-item">
-            <button className="modal__submit" onClick={() => {}}>
+            <button className="modal__submit" onClick={handleFormSubmit}>
               Search
             </button>
           </div>

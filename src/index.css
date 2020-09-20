@@ -76,7 +76,7 @@ body {
   justify-content: center;
   border-radius: 0.5em;
   margin: 2em 0;
-  width: min(750px, 75%);
+  width: min(1024px, 75%);
 }
 
 .item-card__text {
@@ -116,7 +116,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  /* padding: 30px; */
 }
 
 .modal {

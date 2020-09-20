@@ -65,7 +65,11 @@ const Inventory = () => {
 
   return (
     <div className="item-card-container">
-      <InventoryEditModal selectedData={selectedData} />
+      <InventoryEditModal
+        selectedData={selectedData}
+        editItemFromInventory={editItemFromInventory}
+      />
+      <p>Total orders: {inventory.length}</p>
       {loadAllInventoryItems()}
       {console.log(inventory.length)}
     </div>

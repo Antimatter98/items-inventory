@@ -13,7 +13,7 @@ const HomePage = () => {
 
   return (
     <div className="page-container">
-      <h1>Home, Logged in!</h1>
+      <h1>Hello {user.displayName}! Track your orders here...</h1>
       <Inventory />
       <button onClick={signOut}>Signout</button>
     </div>
