@@ -8,6 +8,7 @@
   --google-button-bg: white;
   --google-button-bg-clicked: #e5e5e5;
   --google-button-text: #737373;
+  --navbar-color: #3d84ff;
 }
 
 html {
@@ -24,6 +25,7 @@ body {
   text-align: center;
   min-height: 100vh;
   margin: 0;
+  padding-top: 5em;
 }
 
 .landing-title {
@@ -170,6 +172,43 @@ body {
   border: none;
   cursor: pointer;
   align-self: center;
+}
+
+.navbar {
+  background-color: var(--navbar-color);
+  width: 100%;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  -webkit-transition: 0.1s ease-in-out all;
+  transition: 0.1s ease-in-out all;
+}
+
+.navbar p {
+  float: left;
+  padding-left: 1em;
+}
+
+.navbar > div {
+  display: flex;
+  float: right;
+}
+
+.navbar img {
+  padding: 0.5em;
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+}
+
+.navbar__signout {
+  margin: 0.5em;
+  border: none;
+  background: var(--primary-bg-color);
+  color: var(--navbar-color);
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {
