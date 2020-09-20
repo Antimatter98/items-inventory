@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import CommonModalBody from "./CommonModalBody";
 
+// Modal display and hide functions
 export const modalDisplay = () => {
   document.getElementsByClassName("inventoryModal")[0].style.display = "flex";
 };
@@ -25,6 +27,7 @@ const InventoryEditModal = ({ selectedData, editItemFromInventory }) => {
     setFormState((prevState) => selectedData);
   }
 
+  // form change handling functions
   const handleChange = ({ target }) => {
     setFormState((prevState) => ({
       ...prevState,
@@ -39,64 +42,14 @@ const InventoryEditModal = ({ selectedData, editItemFromInventory }) => {
   };
 
   return (
-    <div className="inventoryModal">
-      <div className="modal">
-        <button className="modal__close-button" onClick={closeModal}>
-          &#10006;
-        </button>
-        <h3>Edit item:</h3>
-        <form>
-          <div className="modal__form-item">
-            <label htmlFor="customer_name">Name:</label>
-            <input
-              type="text"
-              value={formState.customer_name}
-              placeholder={selectedData.customer_name}
-              onChange={handleChange}
-              name="customer_name"
-            />
-          </div>
-          <div className="modal__form-item">
-            <label htmlFor="customer_email">Email:</label>
-            <input
-              type="email"
-              value={formState.customer_email}
-              placeholder={selectedData.customer_email}
-              onChange={handleChange}
-              name="customer_email"
-            />
-          </div>
-          <div className="modal__form-item">
-            <label htmlFor="product">Product:</label>
-            <select
-              value={formState.product}
-              onChange={handleChange}
-              name="product"
-            >
-              <option value="">--select--</option>
-              <option value="Product 1">Product 1</option>
-              <option value="Product 2">Product 2</option>
-              <option value="Product 3">Product 3</option>
-            </select>
-          </div>
-          <div className="modal__form-item">
-            <label htmlFor="quantity">Quantity:</label>
-            <input
-              type="number"
-              value={formState.quantity}
-              placeholder={selectedData.quantity}
-              onChange={handleChange}
-              name="quantity"
-            />
-          </div>
-          <div align="center" className="modal__form-item">
-            <button className="modal__submit" onClick={handleFormSubmit}>
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+    <CommonModalBody
+      closeModal={closeModal}
+      formState={formState}
+      handleChange={handleChange}
+      handleFormSubmit={handleFormSubmit}
+      modalTitle="Edit Item: "
+      className="inventoryModal"
+    />
   );
 };
 

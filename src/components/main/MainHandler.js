@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
 import createFirebaseAuthWrapper from "../firebase/FirebaseWrapper";
 
-//create a context for firebase user property
+//create a context for firebase user property using the context API
 export const firebaseContext = createContext({
   user: null,
   signInWithGoogle: () => {},

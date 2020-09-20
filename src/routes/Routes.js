@@ -8,6 +8,7 @@ import LandingPage from "../components/pages/LandingPage";
 const Routes = () => {
   const { user } = useContext(firebaseContext);
 
+  //conditionally render Home or Landing page based on user object
   const conditionalLandingPageRender = () =>
     user ? <Redirect to="/home" /> : <LandingPage />;
   const conditionalHomePageRender = () =>
